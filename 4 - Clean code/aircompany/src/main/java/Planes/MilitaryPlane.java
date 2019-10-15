@@ -18,23 +18,28 @@ public class MilitaryPlane extends Plane{
     }
 
     @Override
-    public String toString() {
-        return super.toString().replace("}",
-                ", type=" + type +
-                '}');
-    }
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof MilitaryPlane)) return false;
-        if (!super.equals(o)) return false;
-        MilitaryPlane that = (MilitaryPlane) o;
-        return type == that.type;
+        if (!(object instanceof MilitaryPlane) || !super.equals(object)) {
+            return false;
+        }
+
+        MilitaryPlane militaryPlane = (MilitaryPlane) object;
+        return type == militaryPlane.type;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), type);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString().replace("}",
+                ", type=" + type +
+                        '}');
     }
 }

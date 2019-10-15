@@ -16,6 +16,7 @@ public class Runner {
             new PassengerPlane("Embraer 190", 870, 8100, 30800, 64),
             new PassengerPlane("Sukhoi Superjet 100", 870, 11500, 50500, 140),
             new PassengerPlane("Bombardier CS300", 920, 11000, 60700, 196),
+
             new MilitaryPlane("B-1B Lancer", 1050, 21000, 80000, MilitaryType.BOMBER),
             new MilitaryPlane("B-2 Spirit", 1030, 22000, 70000, MilitaryType.BOMBER),
             new MilitaryPlane("B-52 Stratofortress", 1000, 20000, 80000, MilitaryType.BOMBER),
@@ -27,7 +28,8 @@ public class Runner {
     public static void main(String[] args) {
         Airport airport = new Airport(planes);
         Airport militaryAirport = new Airport(airport.getMilitaryPlanes());
-        Airport passengerAirport = new Airport(airport.getPasPl());
+        Airport passengerAirport = new Airport(airport.getPassengerPlanes());
+
         System.out.println("Military airport sorted by max distance: " + militaryAirport
                 .sortByMaxDistance()
                 .toString());
