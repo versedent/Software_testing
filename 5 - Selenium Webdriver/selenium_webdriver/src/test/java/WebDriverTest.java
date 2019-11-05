@@ -15,7 +15,7 @@ import java.util.List;
 public class WebDriverTest {
 
     @Test
-    public void dayBeforeCheckInDate(){
+    public void dayBeforeCheckInDateTest(){
         WebDriver driver = new ChromeDriver();
 
         TestUtils.testSearchForm(driver, TestUtils.getYesterdayDate());
