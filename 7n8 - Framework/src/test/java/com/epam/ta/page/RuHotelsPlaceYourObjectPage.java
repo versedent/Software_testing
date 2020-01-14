@@ -1,6 +1,8 @@
 package com.epam.ta.page;
 
 import com.epam.ta.driver.DriverSingleton;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RuHotelsPlaceYourObjectPage extends AbstractPage{
+    private final Logger logger = LogManager.getRootLogger();
     private static final String FIRST_NAME_PARAMETER = "Rick";
     private static final String LAST_NAME_PARAMETER = "Grimes";
     private static final String EMAIL_ADDRESS_PARAMETER = "wivoci8006@xmailweb.com";
@@ -43,6 +46,7 @@ public class RuHotelsPlaceYourObjectPage extends AbstractPage{
     public RuHotelsPlaceYourObjectPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver, this);
+        logger.info("'Place your object' page has been opened");
     }
 
     public RuHotelsAddHotelInfoPage sendDefaultContactInfo(){
@@ -58,6 +62,7 @@ public class RuHotelsPlaceYourObjectPage extends AbstractPage{
         addHotelButton.click();
 
         DriverSingleton.waitElementLoaded(By.cssSelector("iframe"));
+        logger.info("Default contact information has been sent");
         return new RuHotelsAddHotelInfoPage(this.driver);
     }
 
@@ -73,6 +78,7 @@ public class RuHotelsPlaceYourObjectPage extends AbstractPage{
         ukrOption.click();
         addHotelButton.click();
 
+        logger.info("Contact info with first and last names parameters has been sent");
         return this;
     }
 

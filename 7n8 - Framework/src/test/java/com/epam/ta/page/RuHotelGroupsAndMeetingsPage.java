@@ -1,13 +1,15 @@
 package com.epam.ta.page;
 
 import com.epam.ta.driver.DriverSingleton;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class RuHotelGroupsAndMeetingsPage {
-
+    private final Logger logger = LogManager.getRootLogger();
     private static String ROOMS_NUMBER = "2";
     private static String CLIENT_FULL_NAME = "Rick Dalton";
     private static String CLIENT_EMAIL_ADDRESS = "rick.dalton@gmail.com";
@@ -50,6 +52,7 @@ public class RuHotelGroupsAndMeetingsPage {
 
     public RuHotelGroupsAndMeetingsPage() {
         PageFactory.initElements(DriverSingleton.getDriver(), this);
+        logger.info("Ru hotels groups and meetings page opened");
     }
 
     public RuHotelGroupsAndMeetingsPage sendGroupBookingInfoWithCityParam(String cityParam) {
@@ -67,6 +70,7 @@ public class RuHotelGroupsAndMeetingsPage {
         emailAddressInput.sendKeys(CLIENT_EMAIL_ADDRESS);
 
         submitButton.click();
+        logger.info("Group booking info sent with city param");
         return this;
     }
 

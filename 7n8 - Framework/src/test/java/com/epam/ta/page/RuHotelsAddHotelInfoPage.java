@@ -2,6 +2,8 @@ package com.epam.ta.page;
 
 import com.epam.ta.driver.DriverSingleton;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +14,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class RuHotelsAddHotelInfoPage extends AbstractPage{
-
+    private final Logger logger = LogManager.getRootLogger();
     private static final String HOTEL_NAME = "Beautiful Museum";
     private static final String NUMBER_OF_ROOMS = "100";
 
@@ -66,6 +68,8 @@ public class RuHotelsAddHotelInfoPage extends AbstractPage{
     public RuHotelsAddHotelInfoPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+
+        logger.info("RuHotels 'Add hotel info' page has been opened");
     }
 
     public RuHotelsAddHotelInfoPage sendNewHotelInfoWithAddressParam(String address) {
@@ -83,6 +87,7 @@ public class RuHotelsAddHotelInfoPage extends AbstractPage{
         continueButton.click();
 
         DriverSingleton.waitElementLoaded(By.id("confirmation"));
+        logger.info("New hotel info with address param has been sent");
         return new RuHotelsAddHotelInfoPage(this.driver);
     }
 
@@ -100,12 +105,13 @@ public class RuHotelsAddHotelInfoPage extends AbstractPage{
         partOfChainButtonNo.click();
         continueButton.click();
 
+        logger.info("New hotel info with room number param has been sent");
         return new RuHotelsAddHotelInfoPage(this.driver);
     }
 
     public RuHotelsAddHotelInfoPage approveInfo() {
         continueButton.click();
-
+        logger.info("'Approve info' button has been clicked");
         DriverSingleton.waitElementLoaded(By.id("success"));
         return this;
     }
@@ -126,6 +132,7 @@ public class RuHotelsAddHotelInfoPage extends AbstractPage{
 
         js.executeScript(jsScript);
         Thread.sleep(3000);
+        logger.info("Map navigation has been completed");
         return this;
     }
 
